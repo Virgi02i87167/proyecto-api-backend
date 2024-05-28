@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 4000
+const port = 5000
 const cors = require('cors')
 
 app.use(cors())
@@ -17,6 +17,8 @@ app.post('/movies', (req, res) => {
     const newmovies = {
         id: movies.length + 1,
         title: req.body.title,
+        protagonista: req.body.protagonista,
+        categoria: req.body.categoria,
         url: req.body.url,
         complete: false
     }
@@ -25,35 +27,35 @@ app.post('/movies', (req, res) => {
 })
 
 app.get('/movies/:id', (req, res) => {
-    const taskid = parseInt(req.params.id)
-    const task = movies.find(t => t.id === taskid)
-    if (task) {
-        res.json(task)
+    const movieskid = parseInt(req.params.id)
+    const movie = movies.find(m => m.id === movieskid)
+    if (movie) {
+        res.json(movie)
     } else {
-        res.status(404).send('No se encontrol la tarea')
+        res.status(404).send('No se encontro la tarea')
     }
 })
 
 app.put('/movies/:id', (req,res) => {
-    const taskid = parseInt(req.params.id)
-    const task = movies.find(t=> t.id === taskid)
-    if(task){
-        task.title=req.body.title || task.title
-        task.complete = req.body.complete !== undefined ? req.body.complete: task.complete
-        res.json(task)
+    const movieskid = parseInt(req.params.id)
+    const movie = movies.find(m=> m.id === movieskid)
+    if(movie){
+        movie.title=req.body.title || movie.title
+        movie.complete = req.body.complete !== undefined ? req.body.complete: movie.complete
+        res.json(movie)
     }else{
         res.status(404).send('No se actualizo la tarea')
     }
 })
 
 app.delete('/movies/:id', (req,res) => {
-    const taskid = parseInt(req.params.id)
-    const taskin = movies.findIndex(t=> t.id === taskid)
-    if(taskin !== -1){
-        movies.splice(taskin,1)
-        res.status(204).send('Registro eliminado xd')
+    const movieskid = parseInt(req.params.id)
+    const movieskin = movies.findIndex(t=> t.id === movieskid)
+    if(movieskin !== -1){
+        movies.splice(movieskin,1);
+        res.status(204).send('Registro eliminado xd');
     }else{
-        res.status(404).send('No se elimino la tarea')
+        res.status(404).send('No se elimino la tarea');
     }
 })
 
