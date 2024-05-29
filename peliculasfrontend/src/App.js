@@ -54,13 +54,13 @@ const App = () => {
     <div>
       <h1>Administrador de peliculas</h1>
       <h3>Titulo</h3>
-      <input type="text" value={newTitle} onChange={(e) => setnewTitle(e.target.value)} placeholder="agregar titulo"/>
+      <input type="text" value={newTitle} onChange={(e) => setnewTitle(e.target.value)} placeholder="agregar titulo" />
       <h3>Protagonista</h3>
-      <input type="text" value={newProtagonista} onChange={(e) => setnewProtagonista(e.target.value)} placeholder="agregar protagonista"/>
+      <input type="text" value={newProtagonista} onChange={(e) => setnewProtagonista(e.target.value)} placeholder="agregar protagonista" />
       <h3>Categoria</h3>
-      <input type="text" value={newCategoria} onChange={(e) => setnewCategoria(e.target.value)} placeholder="agregar categoria"/>
+      <input type="text" value={newCategoria} onChange={(e) => setnewCategoria(e.target.value)} placeholder="agregar categoria" />
       <h3>Url del video</h3>
-      <input type="text" value={newUrl} onChange={(e) => setnewUrl(e.target.value)} placeholder="agregar URL de pelicula"/>
+      <input type="text" value={newUrl} onChange={(e) => setnewUrl(e.target.value)} placeholder="agregar URL de pelicula" />
       <br></br>
       <button onClick={createMovies}>Agregar pelicula</button>
       <hr></hr>
