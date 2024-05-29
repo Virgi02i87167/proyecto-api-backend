@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './App.css';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -62,10 +63,21 @@ const App = () => {
       <input type="text" value={newUrl} onChange={(e) => setnewUrl(e.target.value)} placeholder="agregar URL de pelicula"/>
       <br></br>
       <button onClick={createMovies}>Agregar pelicula</button>
+      <hr></hr>
+      <h2>Descripcion</h2>
       <ul>
         {movies.map(movie => (
           <li key={movie.id}>
+            <h4>Titulo</h4>
             <input type="text" value={movie.title} onChange={(e) => updateMovies(movie.id, { title: e.target.value })} />
+            <h4>Protagonista</h4>
+            <input type="text" value={movie.protagonista} onChange={(e) => updateMovies(movie.id, { protagonista: e.target.value })} />
+            <h4>Categoria</h4>
+            <input type="text" value={movie.categoria} onChange={(e) => updateMovies(movie.id, { categoria: e.target.value })} />
+            <h4>Url de pelicula</h4>
+            <input type="text" value={movie.url} onChange={(e) => updateMovies(movie.id, { url: e.target.value })} />
+            <br></br>
+            <button onClick={() => updateMovies(movie.id)}>Actualizar</button>
             <button onClick={() => deleteMovies(movie.id)}>Eliminar</button>
           </li>
         ))}
