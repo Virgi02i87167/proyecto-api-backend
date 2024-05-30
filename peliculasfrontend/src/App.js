@@ -59,6 +59,8 @@ const App = () => {
       <input type="text" value={newProtagonista} onChange={(e) => setnewProtagonista(e.target.value)} placeholder="agregar protagonista" />
       <h3>Categoria</h3>
       <input type="text" value={newCategoria} onChange={(e) => setnewCategoria(e.target.value)} placeholder="agregar categoria" />
+      <h3>Url de la imagen</h3>
+      <input type="text" value={newUrl} onChange={(e) => setnewUrl(e.target.value)} placeholder="agregar URL de imagen" />
       <h3>Url del video</h3>
       <input type="text" value={newUrl} onChange={(e) => setnewUrl(e.target.value)} placeholder="agregar URL de pelicula" />
       <br></br>
