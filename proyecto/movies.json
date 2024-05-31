@@ -7,5 +7,32 @@
     "url": "https://youtu.be/7MPsPfUiMBY?si=T4CHLh07ijuyz6DC",
     "imagen": "https://tvazteca.brightspotcdn.com/dims4/default/05da85e/2147483647/strip/true/crop/1751x1080+84+0/resize/1200x740!/format/jpg/quality/90/?url=http%3A%2F%2Ftv-azteca-brightspot.s3.amazonaws.com%2F06%2Fa6%2F967b73eb40cba5dc1b64e3849bb3%2Feradehielo-teoria.jpg",
     "complete": false
+  },
+  {
+    "id": 2,
+    "title": "My hero academia",
+    "protagonista": "Deku, Bakugo, Shoto",
+    "categoria": "anime",
+    "url": "https://youtu.be/TgVXKPcXGIA?si=etkDtvmMLSgYRmf_",
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi_ozs3Hrj5q9GsTmaKomrZ8RjLOSbiYVRuw&s",
+    "complete": false
+  },
+  {
+    "id": 3,
+    "title": "One Piece",
+    "protagonista": "Luffy, Zoro, Nami",
+    "categoria": "anime",
+    "url": "https://youtu.be/MN_WEb5fNqk?si=aiJ9F-DQtlaI1_XT",
+    "imagen": "https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=1200,height=675/catalog/crunchyroll/a249096c7812deb8c3c2c907173f3774.jpe",
+    "complete": false
+  },
+  {
+    "id": 4,
+    "title": "Naruto",
+    "protagonista": "Naruto, Sasuke, Sakura, Jiraiya",
+    "categoria": "anime",
+    "url": "https://youtu.be/EMFQgt1e5m0?si=Dx8JBJR1fcRkDv1t",
+    "imagen": "https://es.web.img2.acsta.net/pictures/13/12/13/08/50/378271.jpg",
+    "complete": false
   }
 ]
