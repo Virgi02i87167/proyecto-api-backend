@@ -83,18 +83,18 @@ const App = () => {
         {movies.map(movie => (
           <li key={movie.id}>
             <h4>Título</h4>
-            <input type="text" value={movie.title} onChange={(e) => updateMovie(movie.id, { title: e.target.value })} />
+            <input type="text" value={movie.title} onChange={(e) => setMovies(movies.map(m => m.id === movie.id ? { ...m, title: e.target.value } : m))} />
             <h4>Protagonista</h4>
-            <input type="text" value={movie.protagonista} onChange={(e) => updateMovie(movie.id, { protagonista: e.target.value })} />
+            <input type="text" value={movie.protagonista} onChange={(e) => setMovies(movies.map(m => m.id === movie.id ? { ...m, protagonista: e.target.value } : m))} />
             <h4>Categoría</h4>
-            <input type="text" value={movie.categoria} onChange={(e) => updateMovie(movie.id, { categoria: e.target.value })} />
+            <input type="text" value={movie.categoria} onChange={(e) => setMovies(movies.map(m => m.id === movie.id ? { ...m, categoria: e.target.value } : m))} />
             <h4>URL del Video</h4>
-            <input type="text" value={movie.url} onChange={(e) => updateMovie(movie.id, { url: e.target.value })} />
+            <input type="text" value={movie.url} onChange={(e) => setMovies(movies.map(m => m.id === movie.id ? { ...m, url: e.target.value } : m))} />
             <h4>URL de la Imagen</h4>
-            <input type="text" value={movie.imageUrl} onChange={(e) => updateMovie(movie.id, { imageUrl: e.target.value })} />
+            <input type="text" value={movie.imageUrl} onChange={(e) => setMovies(movies.map(m => m.id === movie.id ? { ...m, imageUrl: e.target.value } : m))} />
             {movie.imageUrl && <img src={movie.imageUrl} alt={movie.title} style={{ width: '100px' }} />}
             <br />
-            <button onClick={() => updateMovie(movie.id)}>Actualizar</button>
+            <button onClick={() => updateMovie(movie.id, movie)}>Actualizar</button>
             <button onClick={() => deleteMovie(movie.id)}>Eliminar</button>
           </li>
         ))}
@@ -104,3 +104,4 @@ const App = () => {
 };
 
 export default App;
+
