@@ -72,19 +72,6 @@ app.put('/movies/:id', (req,res) => {
     }
 })
 
-// app.patch('/task/:id', (req,res) => {
-//     const taskid = parseInt(req.params.id)
-//     const task = tasks.findIndex(t=> t.id === taskid)
-//     if(task){
-//         if(req.body.title !== undefined){
-//             task.title = req.body.title
-//         }
-//         req.json(task)
-//     }else {
-//         res.status(404).send('No se encontro la tarea')
-//     }
-// })
-
 
 app.delete('/movies/:id', (req,res) => {
     const movieskid = parseInt(req.params.id)
