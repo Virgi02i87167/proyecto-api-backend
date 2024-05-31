@@ -4,8 +4,10 @@ import { Pagination } from './Pagination'
 export const MoviesList = () => {
 
     const [movies, setMovies] = useState([])
+
+    const totalMovies = movies.length
     const [moviesPerPage, setMoviesPerPage] = useState(4)
-    const [current, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1)
 
     const moviesList = async() => {
         const data = await fetch('http://localhost:5000/movies');
@@ -17,11 +19,6 @@ export const MoviesList = () => {
     useEffect(() => {
         moviesList()
     }, [])
-
-
-
-
-
 
     return (
         <>
@@ -41,7 +38,12 @@ export const MoviesList = () => {
                     </div>
                 ))}
             </div>
-            <Pagination/>
+            <Pagination 
+                moviesPerPage={moviesPerPage}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                totalMovies={totalMovies}
+            />
         </>
     )
 }
