@@ -9,7 +9,6 @@ app.use(express.json())
 
 const filePath = './movies.json';
 
-// Leer las películas del archivo
 const readMoviesFromFile = () => {
     try {
         const data = fs.readFileSync(filePath, 'utf8');
@@ -20,7 +19,6 @@ const readMoviesFromFile = () => {
     }
 };
 
-// Guardar las películas en el archivo
 const writeMoviesToFile = (movies) => {
     try {
         fs.writeFileSync(filePath, JSON.stringify(movies, null, 2), 'utf8');
@@ -36,52 +34,56 @@ app.get('/movies', (req, res) => {
 })
 
 app.post('/movies', (req, res) => {
-    const newmovies = {
+    const newMovie = {
         id: movies.length + 1,
         title: req.body.title,
         protagonista: req.body.protagonista,
         categoria: req.body.categoria,
         url: req.body.url,
+        imageUrl: req.body.imageUrl, 
         complete: false
     }
-    movies.push(newmovies)
-    writeMoviesToFile(movies); //parte agregada
-    res.status(201).json(newmovies)
+    movies.push(newMovie)
+    writeMoviesToFile(movies);
+    res.status(201).json(newMovie)
 })
 
 app.get('/movies/:id', (req, res) => {
-    const movieskid = parseInt(req.params.id)
-    const movie = movies.find(m => m.id === movieskid)
+    const movieId = parseInt(req.params.id)
+    const movie = movies.find(m => m.id === movieId)
     if (movie) {
         res.json(movie)
     } else {
-        res.status(404).send('No se encontro la tarea')
+        res.status(404).send('No se encontró la película')
     }
 })
 
-app.put('/movies/:id', (req,res) => {
-    const movieskid = parseInt(req.params.id)
-    const movie = movies.find(m=> m.id === movieskid)
-    if(movie){
-        movie.title=req.body.title || movie.title
-        movie.complete = req.body.complete !== undefined ? req.body.complete: movie.complete
-        writeMoviesToFile(movies); //parte agregada
+app.put('/movies/:id', (req, res) => {
+    const movieId = parseInt(req.params.id)
+    const movie = movies.find(m => m.id === movieId)
+    if (movie) {
+        movie.title = req.body.title || movie.title
+        movie.protagonista = req.body.protagonista || movie.protagonista
+        movie.categoria = req.body.categoria || movie.categoria
+        movie.url = req.body.url || movie.url
+        movie.imageUrl = req.body.imageUrl || movie.imageUrl 
+        movie.complete = req.body.complete !== undefined ? req.body.complete : movie.complete
+        writeMoviesToFile(movies);
         res.json(movie)
-    }else{
-        res.status(404).send('No se actualizo la tarea')
+    } else {
+        res.status(404).send('No se encontró la película para actualizar')
     }
 })
 
-
-app.delete('/movies/:id', (req,res) => {
-    const movieskid = parseInt(req.params.id)
-    const movieskin = movies.findIndex(t=> t.id === movieskid)
-    if(movieskin !== -1){
-        movies.splice(movieskin,1);
-        writeMoviesToFile(movies); //parte agregada
-        res.status(204).send('Registro eliminado xd');
-    }else{
-        res.status(404).send('No se elimino la tarea');
+app.delete('/movies/:id', (req, res) => {
+    const movieId = parseInt(req.params.id)
+    const movieIndex = movies.findIndex(t => t.id === movieId)
+    if (movieIndex !== -1) {
+        movies.splice(movieIndex, 1);
+        writeMoviesToFile(movies);
+        res.status(204).send('Registro eliminado');
+    } else {
+        res.status(404).send('No se encontró la película para eliminar');
     }
 })
 
