@@ -6,8 +6,11 @@ export const MoviesList = () => {
     const [movies, setMovies] = useState([])
 
     const totalMovies = movies.length
-    const [moviesPerPage, setMoviesPerPage] = useState(4)
+    const [moviesPerPage, setMoviesPerPage] = useState(3)
     const [currentPage, setCurrentPage] = useState(1)
+
+    const firsIndex = currentPage * moviesPerPage
+    const lastIndex = lastIndex - moviesPerPage 
 
     const moviesList = async() => {
         const data = await fetch('http://localhost:5000/movies');
@@ -24,10 +27,9 @@ export const MoviesList = () => {
         <>
             <div className='container-products'>
                 {movies.map(movie => (
-                    <div className='card-product'>
-                        <figure className="container-img">
+                    <div className='card-product' key={movie.id}>
+                        <figure className="container-img" >
                             <img src={movie.url} alt={movie.title} />
-                            {/* <iframe width="560" height="315" src={movie.url} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/> */}
                         </figure>
                         <div className="infro product">
                             <h3>{movie.title}</h3>
@@ -36,7 +38,7 @@ export const MoviesList = () => {
                             <a href={movie.url} target="_blank"><button>Ver Pelicula</button></a>
                         </div>
                     </div>
-                ))}
+                )).slice(firsIndex, lastIndex)}
             </div>
             <Pagination 
                 moviesPerPage={moviesPerPage}
