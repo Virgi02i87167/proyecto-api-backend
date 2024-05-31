@@ -29,7 +29,7 @@ export const MoviesList = () => {
                 {movies.map(movie => (
                     <div className='card-product' key={movie.id}>
                         <figure className="container-img" >
-                            <img src={movie.url} alt={movie.title} />
+                            <img src={movie.imageUrl} alt={movie.title} />
                         </figure>
                         <div className="infro product">
                             <h3>{movie.title}</h3>
