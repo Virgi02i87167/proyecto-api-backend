@@ -16,7 +16,7 @@ const App = () => {
 
   const fetchMovies = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/movies');
+      const response = await axios.get('http://localhost:4000/movies');
       setMovies(response.data);
     } catch (error) {
       console.error('Error al recuperar películas:', error);
@@ -32,7 +32,7 @@ const App = () => {
         url: newUrl,  
         imagen: newImagen  
       };
-      const response = await axios.post('http://localhost:5000/movies', newMovie);
+      const response = await axios.post('http://localhost:4000/movies', newMovie);
       setMovies([...movies, response.data]);
       setNewTitle('');
       setNewProtagonista('');
@@ -46,7 +46,7 @@ const App = () => {
 
   const updateMovie = async (id, updatedMovie) => {
     try {
-      const response = await axios.put(`http://localhost:5000/movies/${id}`, updatedMovie);
+      const response = await axios.put(`http://localhost:4000/movies/${id}`, updatedMovie);
       setMovies(movies.map(movie => (movie.id === id ? response.data : movie)));
     } catch (error) {
       console.error('Error al modificar película:', error);
@@ -55,7 +55,7 @@ const App = () => {
 
   const deleteMovie = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/movies/${id}`);
+      await axios.delete(`http://localhost:4000/movies/${id}`);
       setMovies(movies.filter(movie => movie.id !== id));
     } catch (error) {
       console.error('Error al eliminar película:', error);

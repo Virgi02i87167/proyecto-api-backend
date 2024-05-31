@@ -12,7 +12,7 @@ export const MoviesList = () => {
     const lastIndex = currentPage * moviesPerPage;
 
     const moviesList = async () => {
-        const response = await fetch('http://localhost:5000/movies');
+        const response = await fetch('http://localhost:4000/movies');
         const data = await response.json();
         setMovies(data);
     };

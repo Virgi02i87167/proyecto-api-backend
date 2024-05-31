@@ -1,0 +1,18 @@
+version: '26.1.1'
+services:
+  proyecto:
+    build: proyecto
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+
+  peliculasfrontend:
+    build: peliculasfrontend
+    ports:
+      - "8080:80"
+
+  vistasfrontend:
+    build: vistasfrontend
+    ports:
+      - "8081:80"
