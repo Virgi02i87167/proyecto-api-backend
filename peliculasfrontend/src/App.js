@@ -8,7 +8,7 @@ const App = () => {
   const [newProtagonista, setNewProtagonista] = useState('');
   const [newCategoria, setNewCategoria] = useState('');
   const [newUrl, setNewUrl] = useState('');  
-  const [newImageUrl, setNewImageUrl] = useState('');  
+  const [newImagen, setNewImagen] = useState('');  
 
   useEffect(() => {
     fetchMovies();
@@ -30,7 +30,7 @@ const App = () => {
         protagonista: newProtagonista,
         categoria: newCategoria,
         url: newUrl,  
-        imageUrl: newImageUrl  
+        imagen: newImagen  
       };
       const response = await axios.post('http://localhost:5000/movies', newMovie);
       setMovies([...movies, response.data]);
@@ -38,7 +38,7 @@ const App = () => {
       setNewProtagonista('');
       setNewCategoria('');
       setNewUrl('');
-      setNewImageUrl('');
+      setNewImagen('');
     } catch (error) {
       console.error('Error al crear película:', error);
     }
@@ -74,7 +74,7 @@ const App = () => {
       <h3>URL del Video</h3>
       <input type="text" value={newUrl} onChange={(e) => setNewUrl(e.target.value)} placeholder="Agregar URL de película" />
       <h3>URL de la Imagen</h3>
-      <input type="text" value={newImageUrl} onChange={(e) => setNewImageUrl(e.target.value)} placeholder="Agregar URL de imagen" />
+      <input type="text" value={newImagen} onChange={(e) => setNewImagen(e.target.value)} placeholder="Agregar URL de imagen" />
       <br />
       <button onClick={createMovie}>Agregar Película</button>
       <hr />
@@ -91,8 +91,8 @@ const App = () => {
             <h4>URL del Video</h4>
             <input type="text" value={movie.url} onChange={(e) => setMovies(movies.map(m => m.id === movie.id ? { ...m, url: e.target.value } : m))} />
             <h4>URL de la Imagen</h4>
-            <input type="text" value={movie.imageUrl} onChange={(e) => setMovies(movies.map(m => m.id === movie.id ? { ...m, imageUrl: e.target.value } : m))} />
-            {movie.imageUrl && <img src={movie.imageUrl} alt={movie.title} style={{ width: '100px' }} />}
+            <input type="text" value={movie.imagen} onChange={(e) => setMovies(movies.map(m => m.id === movie.id ? { ...m, imagen: e.target.value } : m))} />
+            {/* {movie.imageUrl && <img src={movie.imagen} alt={movie.title} style={{ width: '100px' }} />} */}
             <br />
             <button onClick={() => updateMovie(movie.id, movie)}>Actualizar</button>
             <button onClick={() => deleteMovie(movie.id)}>Eliminar</button>

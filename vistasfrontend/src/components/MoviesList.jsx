@@ -1,44 +1,42 @@
-import React, { useEffect, useState } from 'react'
-import { Pagination } from './Pagination'
+import React, { useEffect, useState } from 'react';
+import { Pagination } from './Pagination';
 
 export const MoviesList = () => {
+    const [movies, setMovies] = useState([]);
 
-    const [movies, setMovies] = useState([])
+    const totalMovies = movies.length;
+    const [moviesPerPage, setMoviesPerPage] = useState(3);
+    const [currentPage, setCurrentPage] = useState(1);
 
-    const totalMovies = movies.length
-    const [moviesPerPage, setMoviesPerPage] = useState(3)
-    const [currentPage, setCurrentPage] = useState(1)
+    const firstIndex = (currentPage - 1) * moviesPerPage;
+    const lastIndex = currentPage * moviesPerPage;
 
-    const firsIndex = currentPage * moviesPerPage
-    const lastIndex = lastIndex - moviesPerPage 
-
-    const moviesList = async() => {
-        const data = await fetch('http://localhost:5000/movies');
-        const movies = await data.json();
-        
-        setMovies(movies)
-    }
+    const moviesList = async () => {
+        const response = await fetch('http://localhost:5000/movies');
+        const data = await response.json();
+        setMovies(data);
+    };
 
     useEffect(() => {
-        moviesList()
-    }, [])
+        moviesList();
+    }, []);
 
     return (
         <>
             <div className='container-products'>
-                {movies.map(movie => (
+                {movies.slice(firstIndex, lastIndex).map(movie => (
                     <div className='card-product' key={movie.id}>
-                        <figure className="container-img" >
-                            <img src={movie.imageUrl} alt={movie.title} />
+                        <figure className="container-img">
+                            <img src={movie.imagen} alt={movie.title} />
                         </figure>
-                        <div className="infro product">
+                        <div className="info-product">
                             <h3>{movie.title}</h3>
                             <p>{movie.protagonista}</p>
                             <p>{movie.categoria}</p>
-                            <a href={movie.url} target="_blank"><button>Ver Pelicula</button></a>
+                            <a href={movie.url} target="_blank" rel="noopener noreferrer"><button>Ver Pelicula</button></a>
                         </div>
                     </div>
-                )).slice(firsIndex, lastIndex)}
+                ))}
             </div>
             <Pagination 
                 moviesPerPage={moviesPerPage}
@@ -47,5 +45,5 @@ export const MoviesList = () => {
                 totalMovies={totalMovies}
             />
         </>
-    )
-}
+    );
+};

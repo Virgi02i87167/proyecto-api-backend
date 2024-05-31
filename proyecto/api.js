@@ -40,7 +40,7 @@ app.post('/movies', (req, res) => {
         protagonista: req.body.protagonista,
         categoria: req.body.categoria,
         url: req.body.url,
-        imageUrl: req.body.imageUrl, 
+        imagen: req.body.imagen, 
         complete: false
     }
     movies.push(newMovie)
@@ -66,7 +66,7 @@ app.put('/movies/:id', (req, res) => {
         movie.protagonista = req.body.protagonista || movie.protagonista
         movie.categoria = req.body.categoria || movie.categoria
         movie.url = req.body.url || movie.url
-        movie.imageUrl = req.body.imageUrl || movie.imageUrl 
+        movie.imagen = req.body.imagen || movie.imagen
         movie.complete = req.body.complete !== undefined ? req.body.complete : movie.complete
         writeMoviesToFile(movies);
         res.json(movie)
